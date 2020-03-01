@@ -2,11 +2,7 @@
     <div>
         <h3>ShoppingList</h3>
         <div class="shopping-list" v-for="(item, index) in shoppingItems" v-bind:key="index">
-            <ListItem
-                v-bind:item="item"
-                v-bind:index="index"
-                v-on:del-item="$emit('del-item', item.name, index)"
-            />
+            <ListItem v-bind:item="item" v-on:del-item="$emit('del-item', item.id)" />
         </div>
         <button class="btn" @click="$emit('del-all')">Delete Checked</button>
     </div>
@@ -27,6 +23,7 @@ export default {
 <style scoped>
 h3 {
     padding: 20px;
+    color: #3d4d5e;
 }
 .shopping-list {
     max-width: 600px;

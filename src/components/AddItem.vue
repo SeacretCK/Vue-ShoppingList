@@ -2,14 +2,17 @@
     <div>
         <form v-on:submit.prevent="addItem">
             <input type="text" v-model="itemInput" placeholder="Add a new Item..." />
-            <input type="submit" value="Submit" class="btn" />
+            <input type="submit" value="Add" class="btn" />
         </form>
     </div>
 </template>
 
 <script>
+import { v4 as uuidv4 } from "uuid";
+
 export default {
     name: "AddItem",
+    props: ["shoppingItems"],
     data() {
         return {
             itemInput: ""
@@ -18,6 +21,7 @@ export default {
     methods: {
         addItem() {
             const newItem = {
+                id: uuidv4(),
                 name: this.itemInput,
                 done: false
             };
@@ -36,14 +40,15 @@ div {
 
     form {
         display: flex;
+        justify-content: flex-start;
 
         input[type="text"] {
-            flex: 10;
-            padding: 5px;
+            padding: 15px;
+            width: 100%;
         }
 
         input[type="submit"] {
-            flex: 2;
+            margin-left: auto;
         }
     }
 }

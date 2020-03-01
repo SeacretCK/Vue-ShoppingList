@@ -1,8 +1,8 @@
 <template>
     <div id="app">
         <div id="nav">
-            <router-link to="/">Home</router-link>|
-            <router-link to="/about">About</router-link>
+            <router-link to="/">ShoppingList</router-link>
+            <router-link to="/about">Notes</router-link>
         </div>
         <router-view />
     </div>
@@ -19,13 +19,20 @@
 
 #nav {
     padding: 30px;
+    background: #333;
+    border-bottom: 5px #97b5d3 solid;
 
     a {
         font-weight: bold;
-        color: #2c3e50;
+        color: #97b5d3;
+        text-decoration: none;
+        padding: 10px;
+        margin: 0 10px;
 
         &.router-link-exact-active {
-            color: #42b983;
+            background: #97b5d3;
+            color: #333;
+            border-radius: 5px;
         }
     }
 }
@@ -44,13 +51,14 @@ body {
 .btn {
     display: inline-block;
     border: none;
-    background: #555;
+    background: #3d4d5e;
     color: #fff;
     padding: 7px 20px;
     cursor: pointer;
+    border-radius: 1px;
 }
 
 .btn:hover {
-    background: #666;
+    background: #4a5c70;
 }
 </style>

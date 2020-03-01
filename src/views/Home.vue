@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <AddItem v-on:add-item="addItem" />
+        <AddItem v-bind:shoppingItems="shoppingItems" v-on:add-item="addItem" />
         <ShoppingList
             v-bind:shoppingItems="shoppingItems"
             v-on:del-item="deleteItem"
@@ -26,38 +26,39 @@ export default {
     },
     methods: {
         addItem(newItem) {
-            // const { item, completed } = newItem;
-            // this.shoppingItems = [...this.shoppingItems, newItem];
             localStorage.setItem(
-                `shoppinglist.${newItem.name}`,
+                `shoppinglist.${newItem.id}`,
                 JSON.stringify(newItem)
             );
-            this.shoppingItems.push(newItem);
+            this.updateListArray();
         },
-        deleteItem(name, index) {
-            localStorage.removeItem(`shoppinglist.${name}`);
-            this.shoppingItems.splice(index, 1);
+        deleteItem(id) {
+            localStorage.removeItem(`shoppinglist.${id}`);
+            this.updateListArray();
         },
         deleteAll() {
-            this.shoppingItems.forEach((item, index) => {
+            this.shoppingItems.forEach(item => {
                 if (item.done) {
-                    localStorage.removeItem(`shoppinglist.${item.name}`);
-                    this.shoppingItems.splice(index, 1);
+                    localStorage.removeItem(`shoppinglist.${item.id}`);
                 }
             });
+            this.updateListArray();
+        },
+        updateListArray() {
+            const prefix = /shoppinglist.*/;
+            let storedItems = [];
+
+            Object.keys(localStorage).forEach(key => {
+                if (prefix.test(key)) {
+                    let item = JSON.parse(localStorage.getItem(key));
+                    storedItems.push(item);
+                }
+            });
+            this.shoppingItems = storedItems;
         }
     },
     created() {
-        const prefix = /shoppinglist.*/;
-        let storedItems = [];
-
-        Object.keys(localStorage).forEach(key => {
-            if (prefix.test(key)) {
-                let item = JSON.parse(localStorage.getItem(key));
-                storedItems.push(item);
-            }
-        });
-        this.shoppingItems = storedItems;
+        this.updateListArray();
     }
 };
 </script>

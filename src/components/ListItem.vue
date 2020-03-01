@@ -1,21 +1,22 @@
 <template>
     <div class="list-item">
-        <input type="checkbox" v-on:change="markDone" />
+        <input type="checkbox" name="item.name" :checked="item.done" v-on:change="markDone" />
         <p v-bind:class="{'is-done':item.done}">{{item.name}}</p>
-        <button class="del" @click="$emit('del-item', item.name, index)">X</button>
+        <button class="del" @click="$emit('del-item', item.id)">X</button>
     </div>
 </template>
 
 <script>
 export default {
     name: "ListItem",
-    props: ["item", "index"], // = the value of each iteration in ShoppingList
+    props: ["item"], // = the value of each iteration in ShoppingList
     methods: {
         markDone() {
             this.item.done = !this.item.done;
             localStorage.setItem(
-                `shoppinglist.${this.item.name}`,
+                `shoppinglist.${this.item.id}`,
                 JSON.stringify({
+                    id: this.item.id,
                     name: this.item.name,
                     done: this.item.done
                 })
