@@ -2,7 +2,7 @@
     <div>
         <form v-on:submit.prevent="addItem">
             <input type="text" v-model="itemInput" placeholder="Add a new Item..." />
-            <input type="submit" value="Add" class="btn" />
+            <input type="submit" value="Add" class="btn" @click="$event.target.blur()" />
         </form>
     </div>
 </template>

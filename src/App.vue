@@ -2,40 +2,17 @@
     <div id="app">
         <div id="nav">
             <router-link to="/">ShoppingList</router-link>
-            <router-link to="/about">Notes</router-link>
+            <router-link to="/notes">SimpleNotes</router-link>
         </div>
         <router-view />
     </div>
 </template>
 
 <style lang="scss">
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
-
-#nav {
-    padding: 30px;
-    background: #333;
-    border-bottom: 5px #97b5d3 solid;
-
-    a {
-        font-weight: bold;
-        color: #97b5d3;
-        text-decoration: none;
-        padding: 10px;
-        margin: 0 10px;
-
-        &.router-link-exact-active {
-            background: #97b5d3;
-            color: #333;
-            border-radius: 5px;
-        }
-    }
-}
+$primary-color-dark: #333;
+$primary-color-light: #97b5d3;
+$button-color: #3d4d5e;
+$button-hover: #4a5c70;
 
 * {
     box-sizing: border-box;
@@ -48,17 +25,55 @@ body {
     line-height: 1.4;
 }
 
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+}
+
+#nav {
+    padding: 30px;
+    background: $primary-color-dark;
+    border-bottom: 5px $primary-color-light solid;
+
+    a {
+        font-weight: bold;
+        color: $primary-color-light;
+        text-decoration: none;
+        padding: 10px;
+        margin: 0 10px;
+
+        &.router-link-exact-active {
+            background: $primary-color-light;
+            color: $primary-color-dark;
+            border-radius: 5px;
+        }
+    }
+}
+
 .btn {
     display: inline-block;
     border: none;
-    background: #3d4d5e;
+    background: $button-color;
     color: #fff;
-    padding: 7px 20px;
+    padding: 10px 20px;
     cursor: pointer;
     border-radius: 1px;
+
+    .btn:hover {
+        background: $button-hover;
+    }
 }
 
-.btn:hover {
-    background: #4a5c70;
+.del {
+    background: #8d4a4a;
+    color: #fff;
+    border: none;
+    padding: 5px 9px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: auto;
 }
 </style>

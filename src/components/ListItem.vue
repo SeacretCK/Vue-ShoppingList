@@ -38,15 +38,7 @@ export default {
 .is-done {
     text-decoration: line-through;
 }
-.del {
-    background: #8d4a4a;
-    color: #fff;
-    border: none;
-    padding: 5px 9px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: auto;
-}
+
 input[type="checkbox"] {
     padding: 10px;
     margin-right: 20px;

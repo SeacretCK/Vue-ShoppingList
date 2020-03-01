@@ -5,7 +5,11 @@
         <div class="shopping-list" v-for="(item, index) in shoppingItems" v-bind:key="index">
             <ListItem v-bind:item="item" v-on:del-item="$emit('del-item', item.id)" />
         </div>
-        <button v-if="shoppingItems.length > 0" class="btn" @click="$emit('del-all')">Delete Checked</button>
+        <button
+            v-if="shoppingItems.length > 0"
+            class="btn"
+            @click="$emit('del-all'); $event.target.blur()"
+        >Delete Checked</button>
     </div>
 </template>
 
