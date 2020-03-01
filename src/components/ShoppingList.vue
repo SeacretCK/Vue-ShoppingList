@@ -3,7 +3,11 @@
         <h3 v-if="shoppingItems.length == 0">Create a ShoppingList</h3>
         <h3 v-else>Things to buy</h3>
         <div class="shopping-list" v-for="(item, index) in shoppingItems" v-bind:key="index">
-            <ListItem v-bind:item="item" v-on:del-item="$emit('del-item', item.id)" />
+            <ListItem
+                v-bind:item="item"
+                v-on:del-item="$emit('del-item', item.id)"
+                v-on:update-list="$emit('update-list')"
+            />
         </div>
         <button
             v-if="shoppingItems.length > 0"

@@ -3,6 +3,7 @@
         <AddItem v-bind:shoppingItems="shoppingItems" v-on:add-item="addItem" />
         <ShoppingList
             v-bind:shoppingItems="shoppingItems"
+            v-on:update-list="updateListArray"
             v-on:del-item="deleteItem"
             v-on:del-all="deleteAll"
         />
