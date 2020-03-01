@@ -1,12 +1,14 @@
 <template>
     <div class="notes">
-        <form v-on:submit.prevent="addNote">
+        <form v-on:submit.prevent="editMode ? saveEditedNote(note) : addNote()">
             <textarea v-model="note" cols="40" rows="10"></textarea>
             <input type="submit" value="Save" class="btn" @click="$event.target.blur()" />
         </form>
         <div v-for="(note, index) in allNotes" v-bind:key="index">
             <div class="single-note">
-                <p>{{note.content}}</p>
+                <div @click="editNote(note)">
+                    <p>{{note.content}}</p>
+                </div>
                 <button class="del" @click="deleteNote(note.id)">X</button>
             </div>
         </div>
@@ -21,7 +23,9 @@ export default {
     data() {
         return {
             note: "",
-            allNotes: []
+            allNotes: [],
+            editMode: false,
+            idOfEdited: ""
         };
     },
     methods: {
@@ -38,6 +42,26 @@ export default {
         deleteNote(id) {
             localStorage.removeItem(`notes.${id}`);
             this.updateNoteArray();
+        },
+        editNote(note) {
+            this.note = note.content;
+            this.idOfEdited = note.id;
+            this.editMode = true;
+        },
+        saveEditedNote(note) {
+            console.log(note);
+            const newNote = {
+                id: this.idOfEdited,
+                content: this.note
+            };
+            localStorage.setItem(
+                `notes.${newNote.id}`,
+                JSON.stringify(newNote)
+            );
+            this.updateNoteArray();
+            this.note = "";
+            this.idOfEdited = "";
+            this.editMode = false;
         },
         updateNoteArray() {
             const prefix = /notes.*/;
@@ -82,10 +106,14 @@ export default {
         align-items: center;
         justify-content: flex-start;
 
-        p {
-            text-align: left;
-            margin-right: 10%;
-            white-space: pre-line;
+        div {
+            width: 100%;
+
+            p {
+                text-align: left;
+                margin-right: 10%;
+                white-space: pre-line;
+            }
         }
     }
 }
