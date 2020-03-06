@@ -83,6 +83,7 @@ export default {
 
     .is-done {
         text-decoration: line-through;
+        color: rgb(105, 105, 105);
     }
 
     input[type="checkbox"] {
