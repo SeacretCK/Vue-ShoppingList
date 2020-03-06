@@ -5,6 +5,8 @@
             v-bind:shoppingItems="shoppingItems"
             v-on:update-list="updateListArray"
             v-on:del-item="deleteItem"
+            v-on:check-all="checkAll"
+            v-on:uncheck-all="uncheckAll"
             v-on:del-all="deleteAll"
         />
     </div>
@@ -35,6 +37,34 @@ export default {
         },
         deleteItem(id) {
             localStorage.removeItem(`shoppinglist.${id}`);
+            this.updateListArray();
+        },
+        checkAll() {
+            this.shoppingItems.forEach(item => {
+                item.done = true;
+                localStorage.setItem(
+                    `shoppinglist.${item.id}`,
+                    JSON.stringify({
+                        id: item.id,
+                        name: item.name,
+                        done: item.done
+                    })
+                );
+            });
+            this.updateListArray();
+        },
+        uncheckAll() {
+            this.shoppingItems.forEach(item => {
+                item.done = false;
+                localStorage.setItem(
+                    `shoppinglist.${item.id}`,
+                    JSON.stringify({
+                        id: item.id,
+                        name: item.name,
+                        done: item.done
+                    })
+                );
+            });
             this.updateListArray();
         },
         deleteAll() {

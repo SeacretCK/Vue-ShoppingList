@@ -10,6 +10,16 @@
             />
         </div>
         <button
+            v-if="shoppingItems.length > 0 && !allChecked"
+            class="btn"
+            @click="$emit('check-all'); $event.target.blur()"
+        >Check All</button>
+        <button
+            v-if="shoppingItems.length > 0 && allChecked"
+            class="btn"
+            @click="$emit('uncheck-all'); $event.target.blur()"
+        >Uncheck All</button>
+        <button
             v-if="shoppingItems.length > 0"
             class="btn"
             @click="$emit('del-all'); $event.target.blur()"
@@ -25,7 +35,18 @@ export default {
     components: {
         ListItem
     },
-    props: ["shoppingItems"]
+    props: ["shoppingItems"],
+    computed: {
+        allChecked() {
+            let count = 0;
+            this.shoppingItems.forEach(item => {
+                if (item.done) {
+                    count++;
+                }
+            });
+            return count === this.shoppingItems.length; // true when all checked
+        }
+    }
 };
 </script>
 

@@ -36,7 +36,7 @@ body {
 #nav {
     padding: 30px;
     background: $primary-color-dark;
-    border-bottom: 5px $primary-color-light solid;
+    border-bottom: 12px $primary-color-light solid;
 
     a {
         font-weight: bold;

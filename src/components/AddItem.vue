@@ -37,6 +37,7 @@ export default {
 div {
     max-width: 600px;
     margin: 0 auto;
+    border-bottom: 12px #97b5d3 solid;
 
     form {
         display: flex;
@@ -45,10 +46,12 @@ div {
         input[type="text"] {
             padding: 15px;
             width: 100%;
+            border: 1px solid #333;
         }
 
         input[type="submit"] {
             margin-left: auto;
+            border: 1px solid #333;
         }
     }
 }
