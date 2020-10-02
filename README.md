@@ -1,24 +1,4 @@
-# shoppinglist
+My first Vue App, using Vue Router and Components. You can add, delete and edit the items on your shopping list. The SimpleNotes feature lets you save, edit and delete memos. The data gets stored in local storage.
+A registered service worker makes offline use possible.
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+You can check out the live version here: https://shoppinglist-f6cad.firebaseapp.com
